@@ -1,0 +1,41 @@
+<div class="container mt-4">
+  <h3 class="mb-4">Your Cart</h3>
+
+  <div *ngIf="cart.length === 0" class="alert alert-info">
+    Your cart is empty.
+  </div>
+
+  <div class="card shadow-sm p-3 rounded-4" *ngIf="cart.length > 0">
+    <table class="table table-hover align-middle">
+      <thead class="table-primary">
+        <tr>
+          <th>Product</th>
+          <th>Price</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of cart">
+          <td>{{ item.name }}</td>
+          <td>₹{{ item.price }}</td>
+          <td>
+            <button class="btn btn-danger btn-sm rounded-pill" (click)="remove(item.id)">Remove</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+  <button class="btn btn-success w-100 rounded-pill" (click)="checkout()">
+    Checkout ₹{{ getTotal() }}
+  </button>
+
+    <div *ngIf="orders.length > 0" class="mt-4">
+        <h5>Order Items:</h5>
+        <ul class="list-group">
+            <li class="list-group-item" *ngFor="let item of orders">
+                {{ item.name }} - ₹{{ item.price }}
+            </li>
+        </ul>
+    </div>
+  </div>
+</div>

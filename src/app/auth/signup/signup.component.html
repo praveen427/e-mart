@@ -1,0 +1,26 @@
+<div class="container d-flex justify-content-center align-items-center vh-100">
+  <div class="card p-4 shadow rounded-4" style="width: 350px;">
+    <h3 class="text-center mb-4">Signup</h3>
+
+    <div class="mb-3">
+      <input [(ngModel)]="user.email" type="email" class="form-control form-control-lg rounded-pill" placeholder="Email" required>
+    </div>
+
+    <div class="mb-3">
+      <input [(ngModel)]="user.password" type="password" class="form-control form-control-lg rounded-pill" placeholder="Password" required>
+    </div>
+
+    <div class="mb-3">
+      <select [(ngModel)]="user.role" class="form-select form-select-lg rounded-pill">
+        <option>User</option>
+        <option>Admin</option>
+      </select>
+    </div>
+
+    <button class="btn btn-success btn-lg w-100 rounded-pill" (click)="signup()">Signup</button>
+
+    <div class="text-center mt-3">
+      <small>Already have an account? <a routerLink="/">Login</a></small>
+    </div>
+  </div>
+</div>

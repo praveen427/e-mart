@@ -1,0 +1,37 @@
+body {
+  background-color: #f8f9fa;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.card {
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(0,0,0,0.15);
+}
+
+.product-card {
+  height: 450px;           /* total card height */
+  display: flex;
+  flex-direction: column;
+}
+
+.product-card img {
+  height: 200px;            /* fixed image height */
+  width: 100%;              /* fill card width */
+  object-fit: cover;        /* crop image nicely without stretching */
+}
+
+.product-card .card-body {
+  flex: 1;                  /* body takes remaining space */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between; /* button at bottom */
+}
+
+.product-card .card-title,
+.product-card .card-text {
+  margin-bottom: 0.5rem;
+}

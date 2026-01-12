@@ -1,0 +1,81 @@
+<div class="container mt-4">
+  <h3 class="mb-3">My Orders</h3>
+
+  <!-- No orders -->
+  <div *ngIf="orders.length === 0" class="alert alert-info">
+    You have not placed any orders yet.
+  </div>
+
+  <!-- Orders table -->
+  <div *ngIf="orders.length > 0" class="table-responsive">
+    <table class="table table-bordered table-hover align-middle">
+      <thead class="table-dark">
+        <tr>
+          <th>User</th>
+          <th>Date</th>
+          <th>Items</th>
+          <th>Total</th>
+          <th>Payment ID</th>
+          <th>Status</th>
+          <th class="text-center">Action</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr *ngFor="let o of orders; let i = index">
+          <td>
+            <strong>{{ o.user.name }}</strong><br>
+            <small>{{ o.user.email }}</small>
+          </td>
+
+          <td>{{ o.createdAt | date:'short' }}</td>
+
+          <td>
+            <div class="d-flex flex-column gap-1">
+              <span *ngFor="let item of o.items">
+                {{ item.name }} – ₹{{ item.price }} × {{ item.quantity }}
+              </span>
+            </div>
+          </td>
+
+          <td><strong>₹{{ o.total }}</strong></td>
+
+          <td class="text-break">{{ o.paymentId }}</td>
+
+          <td>
+            <span
+              class="badge"
+              [ngClass]="{
+                'bg-success': o.status === 'PAID',
+                'bg-warning': o.status === 'PENDING',
+                'bg-danger': o.status === 'FAILED'
+              }"
+            >
+              {{ o.status }}
+            </span>
+          </td>
+
+          <!-- 🔴 Delete button -->
+          <td class="text-center">
+            <button
+              class="btn btn-sm btn-outline-danger rounded-pill"
+              (click)="deleteOrder(o.orderId)"
+            >
+              <i class="bi bi-trash"></i> Delete
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <!-- Clear all button -->
+    <div class="text-end mt-3">
+      <button
+        class="btn btn-danger rounded-pill"
+        (click)="clearAllOrders()"
+      >
+        Clear All Orders
+      </button>
+    </div>
+  </div>
+</div>
